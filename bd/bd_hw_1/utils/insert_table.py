@@ -1,4 +1,4 @@
-def insert_table(db_cursor: object, for_insert_dict: dict, name: str):    
+def insert_table(cursor: object, connection: object, for_insert_dict: dict, name: str):    
     keys_string = ""
     values_string = ""
 
@@ -12,10 +12,10 @@ def insert_table(db_cursor: object, for_insert_dict: dict, name: str):
     print(values_string)
 
 
-    db_cursor.execute(f"""
+    cursor.execute(f"""
                       INSERT INTO {name}({keys_string}) VALUES({values_string});
-                      """) 
+                      """)
     
-    db_cursor.connection.commit()
+    connection.commit()
 
-    return db_cursor
+    return cursor

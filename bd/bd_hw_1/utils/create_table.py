@@ -1,4 +1,4 @@
-def create_table(db_cursor: object, titles_dict: dict):    
+def create_table(cursor: object, connection: object, titles_dict: dict):    
     string = ''
 
     name = titles_dict["name"]
@@ -6,8 +6,10 @@ def create_table(db_cursor: object, titles_dict: dict):
     for el in titles_dict:
         string = ", ".join(titles_dict["colums_titles"])
 
-    db_cursor.execute(f"""
+    cursor.execute(f"""
                       CREATE TABLE IF NOT EXISTS {name}({string});
                       """) 
     
-    return db_cursor
+    connection.commit()
+
+    return cursor

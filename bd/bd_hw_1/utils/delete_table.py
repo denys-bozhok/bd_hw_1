@@ -1,6 +1,8 @@
-def delete_table(db_cursor: object, name: str):    
-    db_cursor.execute(f"""
+def delete_table(cursor: object, connection: object, name: str):    
+    cursor.execute(f"""
         DROP TABLE {name};
-    """) 
+    """)
 
-    return db_cursor
+    connection.commit() 
+
+    return cursor
